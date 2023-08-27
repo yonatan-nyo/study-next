@@ -1,51 +1,9 @@
-import Card from "@/components/Card";
+import { getServerSession } from "next-auth/next";
+import { options } from "./api/auth/[...nextauth]/option";
+import UserCard from "@/components/UserCard";
 
-export default function Home() {
-  const data = [
-    {
-      name: "haha",
-      description:
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc nec tincidunt augue. In in nunc quis odio lacinia posuere. Donec quis consectetur ante. Praesent ullamcorper, lacus sed auctor pellentesque, nisi nulla tristique libero, eget facilisis lorem mauris porta ipsum. Aenean ut leo arcu. In hac habitasse platea dictumst. Nam aliquet sodales est sit amet tincidunt. Proin non est a mi fermentum interdum quis ut justo. Sed malesuada lorem aliquam erat vestibulum rhoncus. Etiam cursus, dolor quis aliquet tempor, eros eros commodo nunc, nec vulputate mauris nibh sit amet eros. Donec cursus convallis dolor, a rutrum purus suscipit sed. Nam hendrerit dolor sit amet diam faucibus consequat. Quisque mollis dignissim vestibulum. Sed condimentum vehicula enim, eget hendrerit sapien molestie sit amet.\n Aenean porta ut leo ut feugiat. Vestibulum id dolor scelerisque, pretium ex laoreet, accumsan sem. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Morbi vulputate eu nisl id sollicitudin. Pellentesque quis augue pellentesque, volutpat augue sit amet, sagittis quam. Etiam quam mauris, suscipit eu est dapibus, mattis posuere massa. Aenean suscipit lorem non egestas faucibus. Duis interdum purus tempor nisl blandit, sit amet volutpat quam ullamcorper. Aliquam at magna urna. Curabitur cursus posuere laoreet. Aenean a mi volutpat, auctor augue molestie, dictum urna.",
-    },
-    {
-      name: "1",
-      description:
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc nec tincidunt augue. In in nunc quis odio lacinia posuere. Donec quis consectetur ante. Praesent ullamcorper, lacus sed auctor pellentesque, nisi nulla tristique libero, eget facilisis lorem mauris porta ipsum. Aenean ut leo arcu. In hac habitasse platea dictumst. Nam aliquet sodales est sit amet tincidunt. Proin non est a mi fermentum interdum quis ut justo. Sed malesuada lorem aliquam erat vestibulum rhoncus. Etiam cursus, dolor quis aliquet tempor, eros eros commodo nunc, nec vulputate mauris nibh sit amet eros. Donec cursus convallis dolor, a rutrum purus suscipit sed. Nam hendrerit dolor sit amet diam faucibus consequat. Quisque mollis dignissim vestibulum. Sed condimentum vehicula enim, eget hendrerit sapien molestie sit amet.\n Aenean porta ut leo ut feugiat. Vestibulum id dolor scelerisque, pretium ex laoreet, accumsan sem. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Morbi vulputate eu nisl id sollicitudin. Pellentesque quis augue pellentesque, volutpat augue sit amet, sagittis quam. Etiam quam mauris, suscipit eu est dapibus, mattis posuere massa. Aenean suscipit lorem non egestas faucibus. Duis interdum purus tempor nisl blandit, sit amet volutpat quam ullamcorper. Aliquam at magna urna. Curabitur cursus posuere laoreet. Aenean a mi volutpat, auctor augue molestie, dictum urna.",
-    },
-    {
-      name: "2",
-      description:
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc nec tincidunt augue. In in nunc quis odio lacinia posuere. Donec quis consectetur ante. Praesent ullamcorper, lacus sed auctor pellentesque, nisi nulla tristique libero, eget facilisis lorem mauris porta ipsum. Aenean ut leo arcu. In hac habitasse platea dictumst. Nam aliquet sodales est sit amet tincidunt. Proin non est a mi fermentum interdum quis ut justo. Sed malesuada lorem aliquam erat vestibulum rhoncus. Etiam cursus, dolor quis aliquet tempor, eros eros commodo nunc, nec vulputate mauris nibh sit amet eros. Donec cursus convallis dolor, a rutrum purus suscipit sed. Nam hendrerit dolor sit amet diam faucibus consequat. Quisque mollis dignissim vestibulum. Sed condimentum vehicula enim, eget hendrerit sapien molestie sit amet.\n Aenean porta ut leo ut feugiat. Vestibulum id dolor scelerisque, pretium ex laoreet, accumsan sem. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Morbi vulputate eu nisl id sollicitudin. Pellentesque quis augue pellentesque, volutpat augue sit amet, sagittis quam. Etiam quam mauris, suscipit eu est dapibus, mattis posuere massa. Aenean suscipit lorem non egestas faucibus. Duis interdum purus tempor nisl blandit, sit amet volutpat quam ullamcorper. Aliquam at magna urna. Curabitur cursus posuere laoreet. Aenean a mi volutpat, auctor augue molestie, dictum urna.",
-    },
-    {
-      name: "3",
-      description:
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc nec tincidunt augue. In in nunc quis odio lacinia posuere. Donec quis consectetur ante. Praesent ullamcorper, lacus sed auctor pellentesque, nisi nulla tristique libero, eget facilisis lorem mauris porta ipsum. Aenean ut leo arcu. In hac habitasse platea dictumst. Nam aliquet sodales est sit amet tincidunt. Proin non est a mi fermentum interdum quis ut justo. Sed malesuada lorem aliquam erat vestibulum rhoncus. Etiam cursus, dolor quis aliquet tempor, eros eros commodo nunc, nec vulputate mauris nibh sit amet eros. Donec cursus convallis dolor, a rutrum purus suscipit sed. Nam hendrerit dolor sit amet diam faucibus consequat. Quisque mollis dignissim vestibulum. Sed condimentum vehicula enim, eget hendrerit sapien molestie sit amet.\n Aenean porta ut leo ut feugiat. Vestibulum id dolor scelerisque, pretium ex laoreet, accumsan sem. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Morbi vulputate eu nisl id sollicitudin. Pellentesque quis augue pellentesque, volutpat augue sit amet, sagittis quam. Etiam quam mauris, suscipit eu est dapibus, mattis posuere massa. Aenean suscipit lorem non egestas faucibus. Duis interdum purus tempor nisl blandit, sit amet volutpat quam ullamcorper. Aliquam at magna urna. Curabitur cursus posuere laoreet. Aenean a mi volutpat, auctor augue molestie, dictum urna.",
-    },
-    {
-      name: "4",
-      description:
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc nec tincidunt augue. In in nunc quis odio lacinia posuere. Donec quis consectetur ante. Praesent ullamcorper, lacus sed auctor pellentesque, nisi nulla tristique libero, eget facilisis lorem mauris porta ipsum. Aenean ut leo arcu. In hac habitasse platea dictumst. Nam aliquet sodales est sit amet tincidunt. Proin non est a mi fermentum interdum quis ut justo. Sed malesuada lorem aliquam erat vestibulum rhoncus. Etiam cursus, dolor quis aliquet tempor, eros eros commodo nunc, nec vulputate mauris nibh sit amet eros. Donec cursus convallis dolor, a rutrum purus suscipit sed. Nam hendrerit dolor sit amet diam faucibus consequat. Quisque mollis dignissim vestibulum. Sed condimentum vehicula enim, eget hendrerit sapien molestie sit amet.\n Aenean porta ut leo ut feugiat. Vestibulum id dolor scelerisque, pretium ex laoreet, accumsan sem. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Morbi vulputate eu nisl id sollicitudin. Pellentesque quis augue pellentesque, volutpat augue sit amet, sagittis quam. Etiam quam mauris, suscipit eu est dapibus, mattis posuere massa. Aenean suscipit lorem non egestas faucibus. Duis interdum purus tempor nisl blandit, sit amet volutpat quam ullamcorper. Aliquam at magna urna. Curabitur cursus posuere laoreet. Aenean a mi volutpat, auctor augue molestie, dictum urna.",
-    },
-    {
-      name: "5",
-      description:
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc nec tincidunt augue. In in nunc quis odio lacinia posuere. Donec quis consectetur ante. Praesent ullamcorper, lacus sed auctor pellentesque, nisi nulla tristique libero, eget facilisis lorem mauris porta ipsum. Aenean ut leo arcu. In hac habitasse platea dictumst. Nam aliquet sodales est sit amet tincidunt. Proin non est a mi fermentum interdum quis ut justo. Sed malesuada lorem aliquam erat vestibulum rhoncus. Etiam cursus, dolor quis aliquet tempor, eros eros commodo nunc, nec vulputate mauris nibh sit amet eros. Donec cursus convallis dolor, a rutrum purus suscipit sed. Nam hendrerit dolor sit amet diam faucibus consequat. Quisque mollis dignissim vestibulum. Sed condimentum vehicula enim, eget hendrerit sapien molestie sit amet.\n Aenean porta ut leo ut feugiat. Vestibulum id dolor scelerisque, pretium ex laoreet, accumsan sem. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Morbi vulputate eu nisl id sollicitudin. Pellentesque quis augue pellentesque, volutpat augue sit amet, sagittis quam. Etiam quam mauris, suscipit eu est dapibus, mattis posuere massa. Aenean suscipit lorem non egestas faucibus. Duis interdum purus tempor nisl blandit, sit amet volutpat quam ullamcorper. Aliquam at magna urna. Curabitur cursus posuere laoreet. Aenean a mi volutpat, auctor augue molestie, dictum urna.",
-    },
-    {
-      name: "6",
-      description:
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc nec tincidunt augue. In in nunc quis odio lacinia posuere. Donec quis consectetur ante. Praesent ullamcorper, lacus sed auctor pellentesque, nisi nulla tristique libero, eget facilisis lorem mauris porta ipsum. Aenean ut leo arcu. In hac habitasse platea dictumst. Nam aliquet sodales est sit amet tincidunt. Proin non est a mi fermentum interdum quis ut justo. Sed malesuada lorem aliquam erat vestibulum rhoncus. Etiam cursus, dolor quis aliquet tempor, eros eros commodo nunc, nec vulputate mauris nibh sit amet eros. Donec cursus convallis dolor, a rutrum purus suscipit sed. Nam hendrerit dolor sit amet diam faucibus consequat. Quisque mollis dignissim vestibulum. Sed condimentum vehicula enim, eget hendrerit sapien molestie sit amet.\n Aenean porta ut leo ut feugiat. Vestibulum id dolor scelerisque, pretium ex laoreet, accumsan sem. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Morbi vulputate eu nisl id sollicitudin. Pellentesque quis augue pellentesque, volutpat augue sit amet, sagittis quam. Etiam quam mauris, suscipit eu est dapibus, mattis posuere massa. Aenean suscipit lorem non egestas faucibus. Duis interdum purus tempor nisl blandit, sit amet volutpat quam ullamcorper. Aliquam at magna urna. Curabitur cursus posuere laoreet. Aenean a mi volutpat, auctor augue molestie, dictum urna.",
-    },
-  ];
+export default async function Home() {
+  const session = await getServerSession(options);
 
-  return (
-    <main className="max-w-[1240px] p-4 mx-auto">
-      <div className="flex flex-wrap gap-4">
-        {data?.map((el, i) => (
-          <Card key={i} name={el.name} description={el.description} />
-        ))}
-      </div>
-    </main>
-  );
+  return <>{session ? <UserCard user={session?.user} pagetype="Home" /> : <h1 className="text-5xl">You Shall Not Pass!</h1>}</>;
 }
