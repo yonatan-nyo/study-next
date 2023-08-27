@@ -17,7 +17,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <html lang="en">
         <body className={inter.className + " overflow-x-hidden"}>
           <Navbar />
-          <main className="bg-slate-100 min-h-screen py-10">{children}</main>
+          <main className="bg-slate-100 py-10">{children}</main>
         </body>
       </html>
     </AuthProvider>
